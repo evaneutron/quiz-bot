@@ -1,6 +1,4 @@
 from Bot import *
-import table
-import Data
 
 
 def main():

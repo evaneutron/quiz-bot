@@ -154,18 +154,18 @@ class Bot:
             self.bot.send_message(i, text, reply_markup=reply_markup)
 
     def send_instructions(self):
-        instruction = open('source/load questions instruction')
         self.bot.send_photo(self.leader_id, photo=open('source/example.png', 'rb'))
-        self.bot.send_message(self.leader_id, instruction.read())
-        instruction.close()
+        self.bot.send_message(self.leader_id, 'Вопросы должны быть отделены одним отступом')
 
     def load_questions(self, message):
         file_name = self.bot.get_file(message.document.file_id)
         file = self.bot.download_file(file_name.file_path)
         str = file.decode()
 
-        #self.questions = str.split('\r\n\r\n')windows
-        self.questions = str.split('\n\n')
+        #mac
+        self.questions = str.split('\r\n\r\n')
+        #windows
+        #self.questions = str.split('\n\n')
         self.questions_cnt = len(self.questions)
 
         try:
