@@ -68,7 +68,11 @@ class Bot:
                                           " Отвечает на " + str(self.curren_question) + " Вопрос")
 
                 index = self.data.get_player_index(message.from_user.id)
-                table.add_answer(answer_num, index, self.curren_question)
+
+                try:
+                    table.add_answer(answer_num, index, self.curren_question)
+                except Exception:
+                    print("Google table error")
 
         @self.bot.message_handler(content_types=['document'])
         def get_document(message):
@@ -134,10 +138,14 @@ class Bot:
             players = self.data.get_players()
             players.append(self.leader_id)
 
-            self.broadcast_message(players, message.from_user.first_name + ' присоединяется', reply_markup=None)
+            self.bot.send_message(self.leader_id, message.from_user.first_name + ' присоединяется', reply_markup=None)
 
             index = self.data.get_player_index(message.from_user.id)
-            table.add_user(message.from_user.first_name, index)
+
+            try:
+                table.add_user(message.from_user.first_name, index)
+            except Exception:
+                print("Google table error")
 
 
     def broadcast_message(self, target, text, reply_markup):
@@ -152,25 +160,28 @@ class Bot:
         instruction.close()
 
     def load_questions(self, message):
-        newFile = self.bot.get_file(message.document.file_id)
-        file = self.bot.download_file(newFile.file_path)
+        file_name = self.bot.get_file(message.document.file_id)
+        file = self.bot.download_file(file_name.file_path)
         str = file.decode()
 
-        self.questions = str.split('\r\n\r\n')
-        #self.questions = str.split('\n\n') напиши если с мака будешь отправлять
+        #self.questions = str.split('\r\n\r\n')windows
+        self.questions = str.split('\n\n')
         self.questions_cnt = len(self.questions)
-        table.fill_questions(self.questions_cnt)
+
+        try:
+            table.fill_questions(self.questions_cnt)
+        except Exception:
+            print("Google table error")
 
     def send_question(self):
         question = self.questions[self.curren_question]
+        #in answers also there is topic
         answers = question.split('\n')
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 
         for i in range(len(answers) - 1):
             button = types.KeyboardButton(str(i + 1))
             markup.add(button)
-
-        print(self.data.get_players())
 
         self.broadcast_message(self.data.get_players(), question, reply_markup=markup)
         self.curren_answers_cnt = len(answers) - 1

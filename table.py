@@ -17,7 +17,7 @@ spread_sheet_id = '1btHr0VqMh67SvqcRvbP6cXgn0Nib8xteeq_w5ub7PTY'
 """driveService = apiclient.discovery.build('drive', 'v3', http = httpAuth) # Выбираем работу с Google Drive и 3 версию API
 access = driveService.permissions().create(
     fileId = spread_sheet_id,
-    body = {'type': 'user', 'role': 'writer', 'emailAddress': 'vladichek3322@gmail.com'},  # Открываем доступ на редактирование
+    body = {'type': 'user', 'role': 'writer', 'emailAddress': 'e.kuchendaeva@g.nsu.ru'},  # Открываем доступ на редактирование
     fields = 'id'
 ).execute()"""
 
