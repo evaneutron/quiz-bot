@@ -1,9 +1,11 @@
 from Bot import *
+import table
+import Data
 
 
 def main():
     bot = Bot('5334475503:AAE6kESoPzQ_gcODUVN5thv0eOeDTO390iI')
-    bot.run()
+    bot.define_reactions()
 
 
 if __name__ == '__main__':

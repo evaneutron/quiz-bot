@@ -4,18 +4,12 @@ from array import *
 class Data:
     def __init__(self, players, subscribers):
         #инициализация хранилища - подгрузка всех пользователей с файлов
-        self.players_file_name = players
         self.subscribers_file_name = subscribers
 
         self.players = array('i')
         self.subscribers = array('i')
 
-        players_file = open(players, 'r')
         subscribers_file = open(subscribers, 'r')
-        for line in players_file:
-            line = line.rstrip('\n')
-            if line != '':
-                self.players.append(int(line))
 
         for line in subscribers_file:
             line = line.rstrip('\n')
@@ -23,7 +17,6 @@ class Data:
                 self.subscribers.append(int(line))
 
         subscribers_file.close()
-        players_file.close()
 
     def add_sub(self, user_id):
         #добавление нового пользователя бота, сразу пишем в файл
@@ -42,12 +35,7 @@ class Data:
         for el in self.players:
             if el == user_id:
                 return
-
-        players_file = open(self.players_file_name, 'a')
-        players_file.write(str(user_id) + '\n')
         self.players.append(user_id)
-
-        players_file.close()
 
     def get_not_players(self):
         #дает всех пользователей кто в данный момент не в игре, ведущий тоже будет в их числе
@@ -57,3 +45,25 @@ class Data:
                 not_players.append(self.subscribers[i])
 
         return not_players
+
+    def get_players(self):
+        new_players = array('i')
+        for i in self.players:
+            new_players.append(i)
+
+        return new_players
+
+    def get_player_index(self, user_id):
+        for i in range(len(self.players)):
+            if self.players[i] == user_id:
+                return i
+
+    def players_contains(self, value):
+        for i in self.players:
+            if i == value:
+                return True
+
+        return False
+
+    def clear_players(self):
+        self.players = array('i')
