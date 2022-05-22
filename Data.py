@@ -1,6 +1,5 @@
 from array import *
 
-
 class Data:
     def __init__(self, players, subscribers):
         #инициализация хранилища - подгрузка всех пользователей с файлов
