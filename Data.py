@@ -67,3 +67,5 @@ class Data:
 
     def clear_players(self):
         self.players = array('i')
+
+        
