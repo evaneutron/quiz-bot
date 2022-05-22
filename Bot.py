@@ -224,5 +224,3 @@ class Bot:
             return False
 
         return True
-
-    
