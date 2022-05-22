@@ -1,4 +1,4 @@
-from telebot import *
+from telebot import * 
 from Data import *
 from telebot import types
 import table
