@@ -7,6 +7,7 @@ class Data:
         self.subscribers_file_name = subscribers
 
         self.players = array('i')
+
         self.subscribers = array('i')
 
         with open(subscribers, 'r') as subscribers_file:
