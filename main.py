@@ -1,8 +1,11 @@
-from Bot import *
+import signal
+from bot import Bot
+import os
+import sys
 
 
 def main():
-    bot = Bot('5334475503:AAE6kESoPzQ_gcODUVN5thv0eOeDTO390iI')
+    bot = Bot(os.environ.get('TELEGRAM_TOKEN'))
     bot.define_reactions()
 
 
