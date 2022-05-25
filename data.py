@@ -4,7 +4,6 @@ from copy import copy
 
 class Data:
     def __init__(self, players, subscribers):
-        #инициализация хранилища - подгрузка всех пользователей с файлов
         self.subscribers_file_name = subscribers
 
         self.players = array('i')
