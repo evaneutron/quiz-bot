@@ -66,7 +66,6 @@ class Bot:
         self.handle_leader_start(message)
 
     def join_game(self, message):
-        # событие - кто то присоединился к уже существущей игре
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 
         if message.from_user.id == self.leader_id or self.data.players_contains(message.from_user.id):
@@ -93,9 +92,9 @@ class Bot:
         str = file.decode()
 
         #mac
-        self.questions = str.split('\r\n\r\n')
+        #self.questions = str.split('\r\n\r\n')
         #windows
-        #self.questions = str.split('\n\n')
+        self.questions = str.split('\n\n')
         self.questions_cnt = len(self.questions)
 
         try:
